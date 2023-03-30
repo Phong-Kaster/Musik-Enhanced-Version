@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="xxs">2dp</dimen><!-- xx_sm -->
+    <dimen name="xs">4dp</dimen><!-- x_sm -->
+    <dimen name="s">8dp</dimen><!-- sm -->
+    <dimen name="m">16dp</dimen><!-- md -->
+    <dimen name="ml">24dp</dimen><!-- md_lg -->
+    <dimen name="l">32dp</dimen><!-- lg -->
+    <dimen name="xl">64dp</dimen><!-- x_lg -->
+    <dimen name="xxl">128dp</dimen><!-- xx_lg -->
+</resources>

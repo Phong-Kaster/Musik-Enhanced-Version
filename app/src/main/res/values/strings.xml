@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Musik</string>
+    <string name="search">Search</string>
+    <string name="song_artwork">Song Artwork</string>
+    <string name="look_what_you_made_me_do">Look What You Made Me Do</string>
+    <string name="look_what_you_made_me_do_v2">Look What You Made…</string>
+    <string name="duration">03:30</string>
+    <string name="taylor_swift">Taylor Swift</string>
+    <string name="delimiter">delimiter</string>
+    <string name="delimiter_value">|</string>
+    <string name="reputation">Reputation</string>
+    <string name="logo">logo</string>
+    <string name="slogan">Unity In Diversity</string>
+    <string name="guide_storage">App needs STORAGE permission to work perfectly.
+    To continue, select <b>OK</b> then \n
+    • Select <b>Permission</b> \n
+    • Choose <b>Music and Audio\n</b>
+    • Click  <b>Allow</b></string>
+
+    <string name="guide_notification">App needs NOTIFICATION permission to work perfectly.
+    To continue, select <b>OK</b> then \n
+    • Select <b>Permission</b> \n
+    • Choose <b>Notification</b>\n
+    • Click  <b>Allow</b>
+    </string>
+    <string name="musik_needs_storage_permission">Musik needs STORAGE permission !</string>
+    <string name="enter_keyword">Enter keyword</string>
+    <string name="exit">Exit</string>
+    <string name="album_cover">Album Cover</string>
+    <string name="alone_together">Alone, Together</string>
+    <string name="_00_00">00:00</string>
+    <string name="tap_to_shuffle">Tap to shuffle</string>
+</resources>

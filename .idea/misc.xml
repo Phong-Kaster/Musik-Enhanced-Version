@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/background_artwork.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/background_song_artwork.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/background_theme.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/background_theme_v2.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/button_circle.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/button_media_control.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/button_play_pause.xml" value="0.1805" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/circle_indicator.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_arrow_down.xml" value="0.1805" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_back.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_exit.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_key_music.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_more.xml" value="0.1805" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_next.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_pause.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_pause_v2.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_play.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_play_v2.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_playlist.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_previous.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_repeat.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_repeat_all.xml" value="0.1805" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_repeat_looped.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_repeat_mode_all.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_repeat_mode_off.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_repeat_mode_one.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_repeat_one.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_repeat_random.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_search.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_shuffle_off.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_shuffle_on.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_skip_next.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_swastika.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/drawable/ic_test.xml" value="0.1335" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/layout/activity_home.xml" value="0.16246154322878156" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/layout/activity_main.xml" value="0.2436923148431724" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/layout/activity_music_player.xml" value="0.18461539003270633" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/layout/activity_player.xml" value="0.16770833333333332" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/layout/recycler_view_element_song.xml" value="0.36923078006541266" />
+        <entry key="..\:/GitHub/Musik/app/src/main/res/menu/menu_top.xml" value="0.16770833333333332" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

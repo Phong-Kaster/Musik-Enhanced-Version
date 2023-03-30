@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+
+<LinearLayout
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:visibility="visible">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_weight="3"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/albumCover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/album_cover"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_album"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ImageView.Corner.RoundBottom" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/buttonClose"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="15dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_playlist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/buttonMore"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="15dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_more"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/black"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp"
+        android:paddingTop="15dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:text="@string/album_cover"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/slogan"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="15sp"
+            android:layout_marginTop="25sp"
+            android:progressTint="@color/white"
+            android:thumb="@drawable/circle_indicator" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:id="@+id/progressStart"
+                android:text="@string/_00_00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:id="@+id/progressEnd"
+                android:text="@string/_00_00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <!-- Media Control -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/buttonRepeat"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_repeat_mode_off"
+                app:shapeAppearanceOverlay="@style/ImageView.Corner.Round" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/buttonSkipPrevious"
+                android:layout_width="0dp"
+                android:background="@android:color/transparent"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_skip_previous"
+                app:shapeAppearanceOverlay="@style/ImageView.Corner.Round" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/buttonPlayPause"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_play"
+                android:background="@drawable/button_play_pause" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/buttonSkipNext"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_skip_next"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/buttonShuffle"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_shuffle_on" />
+
+        </LinearLayout><!-- end Media Control -->
+
+    </LinearLayout>
+
+</LinearLayout>
+</layout>
