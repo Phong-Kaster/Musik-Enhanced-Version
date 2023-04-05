@@ -12,6 +12,7 @@ import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
 import android.util.Log
 import android.view.Menu
 import android.view.View.GONE
+import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.SearchView.OnQueryTextListener
 import android.widget.SearchView.VISIBLE
@@ -34,15 +35,14 @@ import com.example.musik.Song.SongAdapter
 import com.example.musik.databinding.ActivityHomeBinding
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.MediaMetadata
 import com.google.android.exoplayer2.Player
 import java.util.*
-import kotlin.math.log
 
 
 class HomeActivity : AppCompatActivity(), ServiceConnection {
 
     companion object{
-        var position: Int = 0/*the song's position in the song list*/
         //lateinit var exoPlayer: ExoPlayer/*exoPlayer is utilized in other activities so that it must be static*/
         var musicService: MusicService? = null
         var songList: ArrayList<Song> = ArrayList()
@@ -492,7 +492,7 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
             * users click on compact media control to shuffle list of songs and play music*/
             if( !musicService!!.exoPlayer!!.isPlaying && !musicService!!.exoPlayer!!.hasNextMediaItem())
             {
-                val items = Multipurpose.getMediaItems(songList)
+                val items = Multipurpose.getMediaItems(this, songList)
                 musicService!!.exoPlayer!!.setMediaItems(items)
                 musicService!!.exoPlayer!!.prepare()
                 musicService!!.exoPlayer!!.play()
@@ -613,12 +613,14 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
             if (musicService!!.exoPlayer!!.hasPreviousMediaItem()) {
                 musicService!!.exoPlayer!!.seekToPrevious()
                 musicService!!.exoPlayer!!.play()
+                musicService!!.setupMusicNotification(R.drawable.ic_pause)
             }
         }
         homeBinding.defaultMediaControl.buttonSkipNext.setOnClickListener {
             if (musicService!!.exoPlayer!!.hasNextMediaItem()) {
                 musicService!!.exoPlayer!!.seekToNext()
                 musicService!!.exoPlayer!!.play()
+                musicService!!.setupMusicNotification(R.drawable.ic_pause)
             }
         }/*end BUTTON SKIP PREVIOUS AND SKIP NEXT*/
 
@@ -704,7 +706,7 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
             musicService = binder.getInstance()
 
             /*we only set media items for the first time that music service is created*/
-            val items = Multipurpose.getMediaItems(songList)
+            val items = Multipurpose.getMediaItems(this, songList)
             musicService!!.exoPlayer!!.setMediaItems(items, 0, 0)
             musicService!!.exoPlayer!!.shuffleModeEnabled = true
             /*Log.d(tag, "Music service is NOT NULL")*/
@@ -729,7 +731,5 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
      */
     override fun onServiceDisconnected(p0: ComponentName?) {
         musicService = null
-    }
-
-
+    }/*end onServiceDisconnected*/
 }

@@ -6,10 +6,12 @@ import android.app.PendingIntent
 import android.app.Service
 import android.app.TaskStackBuilder
 import android.content.Intent
-import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
+import android.provider.MediaStore
 import android.support.v4.media.session.MediaSessionCompat
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -19,6 +21,7 @@ import com.example.musik.R
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.audio.AudioAttributes
+
 
 class MusicService : Service() {
 
@@ -63,7 +66,7 @@ class MusicService : Service() {
         /*1. setup basically*/
         /*val notificationManagerCompat = NotificationManagerCompat.from(applicationContext)*/
         val style = androidx.media.app.NotificationCompat.MediaStyle().setMediaSession(mediaSessionCompat.sessionToken)
-        val album = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.img_album)
+        /*val album = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.img_album)*/
         val flag =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) PendingIntent.FLAG_IMMUTABLE else PendingIntent.FLAG_UPDATE_CURRENT
 
@@ -94,12 +97,18 @@ class MusicService : Service() {
         }
 
         /*3. setup notification for playing music & attach pending intents*/
-        val position = HomeActivity.position
         val song = exoPlayer!!.currentMediaItem!!.mediaMetadata.title!!
         val artist = exoPlayer!!.currentMediaItem!!.mediaMetadata.artist!!
+        val albumUri = exoPlayer!!.currentMediaItem!!.mediaMetadata.artworkUri!!
+        val album: Bitmap = if ( Build.VERSION.SDK_INT < 29 )
+                        { MediaStore.Images.Media.getBitmap(this.contentResolver, albumUri) }
+                    else { val source = ImageDecoder.createSource(this.contentResolver, albumUri)
+                             ImageDecoder.decodeBitmap(source) }
+        val resized = Bitmap.createScaledBitmap(album, 150, 150, true)
 
-        Log.d(tag, "setupMusicNotification: $song")
-        Log.d(tag, "setupMusicNotification: $artist")
+
+        /*Log.d(tag, "setupMusicNotification: $song")
+        Log.d(tag, "setupMusicNotification: $artist")*/
 
         notification = NotificationCompat.Builder(applicationContext, Constant.CHANNEL_ID)
             .setContentIntent(pendingIntentHome)

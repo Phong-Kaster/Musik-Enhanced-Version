@@ -84,20 +84,7 @@ class SongAdapter constructor(private val context: Context,private var list: Arr
 
         /*onClick event - play song when clicked on*/
         viewHolder.layout.setOnClickListener {
-            /*val intent = Intent(context.applicationContext, SongService::class.java)
-            context.startService(intent)*/
-
-            /*if( HomeActivity.exoPlayer.isPlaying )
-            {
-                HomeActivity.exoPlayer.pause()
-                HomeActivity.exoPlayer.seekTo(position, 0)
-            }
-            else
-            {
-                val items = Multipurpose.getMediaItems(list)
-                HomeActivity.exoPlayer.setMediaItems(items, position, 0)
-            }*/
-            val items = Multipurpose.getMediaItems(list)
+            val items = Multipurpose.getMediaItems(context, list)
             HomeActivity.musicService!!.exoPlayer!!.setMediaItems(items, position, 0)
             HomeActivity.musicService!!.exoPlayer!!.prepare()
             HomeActivity.musicService!!.exoPlayer!!.play()
