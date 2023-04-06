@@ -117,13 +117,13 @@ class MusicService : Service() {
         }
 
         /*5. set variable to album(Large Icon)*/
-        /*val album: Bitmap = if ( Build.VERSION.SDK_INT < 29 )
+        val album: Bitmap = if ( Build.VERSION.SDK_INT < 29 )
                         { MediaStore.Images.Media.getBitmap(this.contentResolver, albumUri) }
                     else {
-                        val source: Source = ImageDecoder.createSource(this.contentResolver, albumUri)
+                        val source: Source = ImageDecoder.createSource(this.contentResolver, albumUri!!)
                         ImageDecoder.decodeBitmap(source)
-                    }*/
-        val album = MediaStore.Images.Media.getBitmap(this.contentResolver, albumUri)
+                    }
+        /*val album = MediaStore.Images.Media.getBitmap(this.contentResolver, albumUri)*/
 
         notification = NotificationCompat.Builder(applicationContext, Constant.CHANNEL_ID)
             .setContentIntent(pendingIntentHome)
