@@ -133,22 +133,13 @@ class Multipurpose {
          * get all songs that their format is Media Item
          * @return ArrayList<MediaItem>
          */
-        fun getMediaItems(context: Context, list: ArrayList<Song>): ArrayList<MediaItem> {
+        fun getMediaItems(list: ArrayList<Song>): ArrayList<MediaItem> {
             val dataSet = arrayListOf<MediaItem>()
             for (song in list) {
-
-                var songAlbumCover: Uri = song.albumCover
-                val imageView = ImageView(context)
-                imageView.setImageURI(songAlbumCover)
-                if( imageView.drawable == null)
-                {
-                    songAlbumCover = getUriToDrawable(context, R.drawable.img_song)
-                }
-
                 val elementMetaData = MediaMetadata.Builder()
                     .setTitle(song.name)
                     .setArtist(song.artist)
-                    .setArtworkUri(songAlbumCover)
+                    .setArtworkUri(song.albumCover)
                     .build()
 
                 val element = MediaItem.Builder()

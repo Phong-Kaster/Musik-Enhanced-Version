@@ -35,9 +35,9 @@ import com.example.musik.Song.SongAdapter
 import com.example.musik.databinding.ActivityHomeBinding
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.MediaMetadata
 import com.google.android.exoplayer2.Player
 import java.util.*
+import kotlin.math.log
 
 
 class HomeActivity : AppCompatActivity(), ServiceConnection {
@@ -333,6 +333,8 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
 
             val uriSong = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id)// = song uri
             val uriAlbumCover = ContentUris.withAppendedId(Uri.parse("content://media/external/audio/albumart"), albumCover)// = album cover
+
+
             val element = Song(uriAlbumCover, name, artist, album, uriSong, duration)// = create a song instance
             if( size <= 0)// if size <= 0 MB then ignore this song
             {
@@ -393,6 +395,7 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
                     homeBinding.defaultMediaControl.progressEnd.text = duration
                     homeBinding.defaultMediaControl.seekBar.progress = musicService!!.exoPlayer!!.currentPosition.toInt()
                     homeBinding.defaultMediaControl.seekBar.max = musicService!!.exoPlayer!!.duration.toInt()
+
                 }
 
                 if( musicService!!.exoPlayer!!.isPlaying )
@@ -413,7 +416,14 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
                 //get name, artist & album cover
                 val name = mediaItem!!.mediaMetadata.title
                 val artist = mediaItem.mediaMetadata.artist
-                val albumCover = mediaItem.mediaMetadata.artworkUri
+                var albumCover = mediaItem.mediaMetadata.artworkUri
+
+                /*check if album Uri create a NULL drawable?*/
+                val imageView = ImageView(applicationContext)
+                imageView.setImageURI(albumCover)
+                if( imageView.drawable == null ){
+                    albumCover = Multipurpose.getUriToDrawable(applicationContext, R.drawable.img_song)
+                }
 
 
                 // for COMPACT MEDIA CONTROL,  update name, artist, album cover & play/pause button's icon
@@ -431,6 +441,7 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
 
 
                 //for DEFAULT MEDIA CONTROL(dmc), update progress & seek bar
+                musicService!!.setupMusicNotification(R.drawable.ic_pause)
                 dmcUpdateProgress()
             }
         }
@@ -445,7 +456,7 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
                 musicService!!.exoPlayer!!.pause()
                 homeBinding.compactMediaControlPlayPause.setImageResource(R.drawable.ic_play_v2)
                 homeBinding.defaultMediaControl.buttonPlayPause.setImageResource(R.drawable.ic_play)
-                musicService!!.setupMusicNotification(R.drawable.ic_play_v2)
+                musicService!!.setupMusicNotification(R.drawable.ic_play)
             }
             /*Step 2 - Case 2: exoplayer is not playing music */
             else {
@@ -492,7 +503,7 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
             * users click on compact media control to shuffle list of songs and play music*/
             if( !musicService!!.exoPlayer!!.isPlaying && !musicService!!.exoPlayer!!.hasNextMediaItem())
             {
-                val items = Multipurpose.getMediaItems(this, songList)
+                val items = Multipurpose.getMediaItems(songList)
                 musicService!!.exoPlayer!!.setMediaItems(items)
                 musicService!!.exoPlayer!!.prepare()
                 musicService!!.exoPlayer!!.play()
@@ -596,7 +607,7 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
                 musicService!!.exoPlayer!!.pause()
                 homeBinding.defaultMediaControl.buttonPlayPause.setImageResource(R.drawable.ic_play)
                 homeBinding.compactMediaControlPlayPause.setImageResource(R.drawable.ic_play_v2)
-                musicService!!.setupMusicNotification(R.drawable.ic_play_v2)
+                musicService!!.setupMusicNotification(R.drawable.ic_play)
             }
             /*Step 2 - Case 2: exoplayer is not playing music */
             else
@@ -706,7 +717,7 @@ class HomeActivity : AppCompatActivity(), ServiceConnection {
             musicService = binder.getInstance()
 
             /*we only set media items for the first time that music service is created*/
-            val items = Multipurpose.getMediaItems(this, songList)
+            val items = Multipurpose.getMediaItems(songList)
             musicService!!.exoPlayer!!.setMediaItems(items, 0, 0)
             musicService!!.exoPlayer!!.shuffleModeEnabled = true
             /*Log.d(tag, "Music service is NOT NULL")*/

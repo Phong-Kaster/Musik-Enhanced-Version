@@ -1,5 +1,6 @@
 package com.example.musik.Song
 
+
 import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.PendingIntent
@@ -7,20 +8,27 @@ import android.app.Service
 import android.app.TaskStackBuilder
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
+import android.graphics.ImageDecoder.Source
+import android.media.Image
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.provider.MediaStore
 import android.support.v4.media.session.MediaSessionCompat
 import android.util.Log
+import android.widget.ImageView
 import androidx.core.app.NotificationCompat
 import com.example.musik.Homepage.HomeActivity
 import com.example.musik.Mutilpurpose.Constant
+import com.example.musik.Mutilpurpose.Multipurpose
 import com.example.musik.R
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.audio.AudioAttributes
+import java.lang.reflect.InvocationTargetException
+import kotlin.math.log
 
 
 class MusicService : Service() {
@@ -99,16 +107,23 @@ class MusicService : Service() {
         /*3. setup notification for playing music & attach pending intents*/
         val song = exoPlayer!!.currentMediaItem!!.mediaMetadata.title!!
         val artist = exoPlayer!!.currentMediaItem!!.mediaMetadata.artist!!
-        val albumUri = exoPlayer!!.currentMediaItem!!.mediaMetadata.artworkUri!!
-        val album: Bitmap = if ( Build.VERSION.SDK_INT < 29 )
+        var albumUri = exoPlayer!!.currentMediaItem!!.mediaMetadata.artworkUri
+
+        /*4. check if album Uri create a NULL drawable?*/
+        val imageView = ImageView(this)
+        imageView.setImageURI(albumUri)
+        if( imageView.drawable == null ){
+            albumUri = Multipurpose.getUriToDrawable(this, R.drawable.img_song)
+        }
+
+        /*5. set variable to album(Large Icon)*/
+        /*val album: Bitmap = if ( Build.VERSION.SDK_INT < 29 )
                         { MediaStore.Images.Media.getBitmap(this.contentResolver, albumUri) }
-                    else { val source = ImageDecoder.createSource(this.contentResolver, albumUri)
-                             ImageDecoder.decodeBitmap(source) }
-        val resized = Bitmap.createScaledBitmap(album, 150, 150, true)
-
-
-        /*Log.d(tag, "setupMusicNotification: $song")
-        Log.d(tag, "setupMusicNotification: $artist")*/
+                    else {
+                        val source: Source = ImageDecoder.createSource(this.contentResolver, albumUri)
+                        ImageDecoder.decodeBitmap(source)
+                    }*/
+        val album = MediaStore.Images.Media.getBitmap(this.contentResolver, albumUri)
 
         notification = NotificationCompat.Builder(applicationContext, Constant.CHANNEL_ID)
             .setContentIntent(pendingIntentHome)
@@ -123,8 +138,8 @@ class MusicService : Service() {
             .addAction(R.drawable.ic_close, "Exit", pendingIntentExit)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setStyle(style)
-            .setPriority(androidx.core.app.NotificationCompat.PRIORITY_HIGH)
-            .setVisibility(androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .build()
         /*notificationManagerCompat.notify(1, notification)*/
         startForeground(13, notification)

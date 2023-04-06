@@ -40,7 +40,7 @@ class MusicBroadcastReceiver : BroadcastReceiver() {
 
         if (HomeActivity.musicService!!.exoPlayer!!.isPlaying) {
             HomeActivity.musicService!!.exoPlayer!!.pause()
-            HomeActivity.musicService!!.setupMusicNotification(R.drawable.ic_play_v2)
+            HomeActivity.musicService!!.setupMusicNotification(R.drawable.ic_play)
             HomeActivity.homeBinding.compactMediaControlPlayPause.setImageResource(R.drawable.ic_play_v2)
             HomeActivity.homeBinding.defaultMediaControl.buttonPlayPause.setImageResource(R.drawable.ic_play)
         }
